@@ -74,17 +74,17 @@ class DataTypeExamples : FreeSpec() {
             "Monad" {
                 // Computing over dependent values ignoring absence
                 val six = Option.fx {
-                    val (a) = Option(1)
-                    val (b) = Option(1 + a)
-                    val (c) = Option(1 + b)
+                    val a = !Option(1)
+                    val b = !Option(1 + a)
+                    val c = !Option(1 + b)
                     a + b + c
                 }
                 six shouldBe Some(6)
 
                 val none = Option.fx {
-                    val (a) = Option(1)
-                    val (b) = noneValue
-                    val (c) = Option(1 + b)
+                    val a = !Option(1)
+                    val b = !noneValue
+                    val c = !Option(1 + b)
                     a + b + c
                 }
                 none shouldBe None
@@ -119,7 +119,7 @@ class DataTypeExamples : FreeSpec() {
             }
 
             "Left" {
-                // either is right-biaised
+                // either is right-biased
                 either = Either.Left(somethingWentWRong)
                 either shouldBe Left(somethingWentWRong)
                 either.getOrElse { 0 } shouldBe 0

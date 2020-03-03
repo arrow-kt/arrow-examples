@@ -70,8 +70,8 @@ object FpToTheMax {
     }
 
     fun <F> MonadAndConsoleRandom<F>.checkContinue(name: String): Kind<F, Boolean> = fx.monad {
-        val (_) = putStrLn("Do you want to continue, $name?")
-        val (input) = getStrLn().map { it.toLowerCase() }
+        putStrLn("Do you want to continue, $name? [y/n]")
+        val input = !getStrLn().map { it.toLowerCase() }
         when (input) {
             "y" -> just(true)
             "n" -> just(false)
@@ -80,22 +80,22 @@ object FpToTheMax {
     }
 
     fun <F> MonadAndConsoleRandom<F>.gameLoop(name: String): Kind<F, Unit> = fx.monad {
-        val (num) = nextInt(5).map { it + 1 }
+        val num = !nextInt(5).map { it + 1 }
         putStrLn("Dear $name, please guess a number from 1 to 5:").bind()
-        val (input) = getStrLn()
+        val input = !getStrLn()
         parseInt(input).fold({ putStrLn("You did not enter a number") }) { guess ->
             if (guess == num) putStrLn("You guessed right, $name!")
             else putStrLn("You guessed wrong, $name! The number was: $num")
         }.bind()
-        val (cont) = checkContinue(name)
+        val cont = !checkContinue(name)
         (if (cont) gameLoop(name) else just(Unit)).bind()
     }
 
     fun <F> MonadAndConsoleRandom<F>.fMain(): Kind<F, Unit> = fx.monad {
-        putStrLn("What is your name?").bind()
-        val (name) = getStrLn()
-        putStrLn("Hello $name, welcome to the game").bind()
-        gameLoop(name).bind()
+        !putStrLn("What is your name?")
+        val name = !getStrLn()
+        !putStrLn("Hello $name, welcome to the game")
+        !gameLoop(name)
     }
 
     @JvmStatic
