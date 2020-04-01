@@ -12,10 +12,10 @@ import arrow.typeclasses.realWorld
 // Step 0
 
 interface DomainMapper {
-  fun IO<UserDto>.toUserFromNetwork(): IO<User> =
+  fun IO<Nothing, UserDto>.toUserFromNetwork(): IO<Nothing, User> =
     flatMap { user -> IO.effect { realWorld { User(user.id) } } }
 
-  fun IO<UserDao>.toUserFromDatabase(): IO<User> =
+  fun IO<Nothing, UserDao>.toUserFromDatabase(): IO<Nothing, User> =
     flatMap { user -> IO.effect { realWorld { User(user.id) } } }
 }
 
