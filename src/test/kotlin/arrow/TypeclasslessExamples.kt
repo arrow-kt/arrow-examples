@@ -3,14 +3,14 @@ package arrow
 import arrow.TypeclasslessExamples.ScopeOne.inScopeOne
 import arrow.TypeclasslessExamples.ScopeTwo.withAll
 import arrow.TypeclasslessExamples.ScopeTwo.withApplicative
-import arrow.core.identity
 import arrow.core.ForListK
 import arrow.core.ListK
-import arrow.core.k
 import arrow.core.extensions.listk.applicative.applicative
+import arrow.core.identity
+import arrow.core.k
 import arrow.typeclasses.Applicative
-import io.kotlintest.shouldBe
-import io.kotlintest.specs.FreeSpec
+import io.kotest.core.spec.style.FreeSpec
+import io.kotest.matchers.shouldBe
 
 class TypeclasslessExamples : FreeSpec() {
 

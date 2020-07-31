@@ -1,14 +1,14 @@
 package arrow
 
 import arrow.core.Id
+import arrow.core.extensions.id.comonad.comonad
 import arrow.ui.Day
 import arrow.ui.ForStore
 import arrow.ui.Store
 import arrow.ui.Sum
-import arrow.core.extensions.id.comonad.comonad
 import arrow.ui.extensions.store.comonad.comonad
-import io.kotlintest.shouldBe
-import io.kotlintest.specs.FreeSpec
+import io.kotest.core.spec.style.FreeSpec
+import io.kotest.matchers.shouldBe
 
 class ComonadicUisTest : FreeSpec() {
 

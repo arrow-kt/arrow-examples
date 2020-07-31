@@ -18,8 +18,8 @@ import arrow.core.extensions.option.applicative.applicative
 import arrow.core.flatMap
 import arrow.core.getOrElse
 import arrow.core.handleErrorWith
-import io.kotlintest.shouldBe
-import io.kotlintest.specs.FreeSpec
+import io.kotest.core.spec.style.FreeSpec
+import io.kotest.matchers.shouldBe
 
 /*** Arrow.io documentation as runnable code ***/
 class DataTypeExamples : FreeSpec() {
@@ -33,7 +33,7 @@ class DataTypeExamples : FreeSpec() {
             val noneValue: Option<Int> = None
 
             "getOrElse" {
-                someValue.getOrElse { -1 }.shouldBe<Int, Int>(42)
+                someValue.getOrElse { -1 }.shouldBe(42)
                 noneValue.getOrElse { -1 }.shouldBe(-1)
             }
 
@@ -67,7 +67,7 @@ class DataTypeExamples : FreeSpec() {
 
             "Applicative" {
                 // Computing over independent values
-                val tuple = Option.applicative().tupled(Option(1), Option("Hello"), Option(20.0))
+                val tuple = Option.applicative().tupledN(Option(1), Option("Hello"), Option(20.0))
                 tuple shouldBe Some(Tuple3(a = 1, b = "Hello", c = 20.0))
             }
 

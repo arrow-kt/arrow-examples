@@ -3,8 +3,8 @@
 package com.pacoworks.typeclasses.basics.solved
 
 import arrow.Kind
-import arrow.fx.IO
 import arrow.fx.ForIO
+import arrow.fx.IO
 import arrow.fx.extensions.io.async.async
 import arrow.fx.fix
 import arrow.fx.typeclasses.Async
@@ -13,9 +13,9 @@ import arrow.typeclasses.Index
 import arrow.typeclasses.NetworkModule
 import arrow.typeclasses.User
 import arrow.typeclasses.solved.RequestOperationsAsync
+import kotlin.coroutines.CoroutineContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
-import kotlin.coroutines.CoroutineContext
 
 fun <F> RequestOperationsAsync<F>.fetchUser(idx: Index): Kind<F, User> =
   idx.fetchUser()
