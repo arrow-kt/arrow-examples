@@ -11,8 +11,6 @@ plugins {
 
 apply from: "$ROOT_PROJECT"
 
-ktlintTestSourceSetCheck.enabled = false
-
 idea {
     module {
         sourceDirs += files(
@@ -35,7 +33,6 @@ idea {
 }
 
 dependencies {
-
     testImplementation platform("io.arrow-kt:arrow-stack:$VERSION_NAME")
 
     kapt "io.arrow-kt:arrow-meta:$VERSION_NAME"
@@ -63,4 +60,3 @@ compileTestKotlin {
         jvmTarget = "1.8"
     }
 }
-
